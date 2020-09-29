@@ -23,10 +23,24 @@ const pasaFiltros = (card) => {
   // si coincide con lo escrito en la trajeta retorno true 
   // si no coincide, retorno false 
 
-  if (hayAlgunCheckBoxChequeado()) {
-    if (compararCheckBoxChequeado(card)) {
-      console.log("Pasa filtros")
+  // if (hayAlgunCheckBoxChequeado()) {
+  //   if (compararCheckBoxChequeado(card)) {
+  //     console.log("Pasa filtros")
+  //     return true
+  //   }
+  //   else {
+  //     return false
+  //   }
+  // }
+  // else {
+  //   return true
+  // }
+
+  if (hayAlgunRadioChequeado()) {
+    if (compararRadioChequeado(card)) {
+      console.log ("pasa filtros")
       return true
+
     }
     else {
       return false
@@ -35,7 +49,6 @@ const pasaFiltros = (card) => {
   else {
     return true
   }
-
 }
 
 
@@ -95,44 +108,58 @@ const filtrarTarjetas = () => {
 //   }
 // }
 
-const compararCheckBoxChequeado = (card) => {
-  for (let checkbox of filtroColor) {
-    if (checkbox.checked){
-    if (checkbox.value === card.dataset.color) {
-      console.log("hay uno que coincide")
-      return true
-    }
-    else if (checkbox.value=== "todos"){
-      console.log("todos los gatos")
-      return true
-    }
-  }
-}
-  return false
-}
-
-
-const hayAlgunCheckBoxChequeado = () => {
-  for (let checkbox of filtroColor) {
-    if (checkbox.checked) {
-      console.log("estoy chequeado")
-      return true
-    }
-  }
-  console.log("no está chequeado")
-  return false
-}
-
-
-
-// const hayAlgunRadioChequeado = () => {
-//   for (radio of filtroSexo) {
-//     if (radio.checked) {
+// const compararCheckBoxChequeado = (card) => {
+//   for (let checkbox of filtroColor) {
+//     if (checkbox.checked){
+//     if (checkbox.value === card.dataset.color) {
+//       console.log("hay uno que coincide")
+//       return true
+//     }
+//     else if (checkbox.value=== "todos"){
+//       console.log("todos los gatos")
 //       return true
 //     }
 //   }
+// }
 //   return false
 // }
+const compararRadioChequeado = (card) => {
+  for (let radio of filtroSexo) {
+    if (radio.checked) {
+      if (radio.value === card.dataset.sexo) {
+        console.log("hay uno que coincide")
+        return true
+      }
+      else if (radio.value === "i") {
+        console.log("todos los gatos")
+        return true
+      }
+    }
+  }
+  return false
+}
+
+// const hayAlgunCheckBoxChequeado = () => {
+//   for (let checkbox of filtroColor) {
+//     if (checkbox.checked) {
+//       console.log("estoy chequeado")
+//       return true
+//     }
+//   }
+//   console.log("no está chequeado")
+//   return false
+// }
+
+
+
+const hayAlgunRadioChequeado = () => {
+  for (radio of filtroSexo) {
+    if (radio.checked) {
+      return true
+    }
+  }
+  return false
+}
 
 // const hayAlgoEscritoEnElInput = () => {
 //   if (filtroBusqueda.value) {
@@ -149,14 +176,14 @@ const hayAlgunCheckBoxChequeado = () => {
 // }
 
 
-for (let checkbox of filtroColor) {
-  checkbox.oninput = () => {
+// for (let checkbox of filtroColor) {
+//   checkbox.oninput = () => {
+//     filtrarTarjetas()
+//   }
+// }
+
+for (let radio of filtroSexo) {
+  radio.oninput = () => {
     filtrarTarjetas()
   }
 }
-
-// for (let radio of filtroSexo) {
-//   radio.oninput = () => {
-//     filtrarTarjetas()
-//   }
-//}
