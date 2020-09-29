@@ -97,11 +97,17 @@ const filtrarTarjetas = () => {
 
 const compararCheckBoxChequeado = (card) => {
   for (let checkbox of filtroColor) {
+    if (checkbox.checked){
     if (checkbox.value === card.dataset.color) {
       console.log("hay uno que coincide")
       return true
     }
+    else if (checkbox.value=== "todos"){
+      console.log("todos los gatos")
+      return true
+    }
   }
+}
   return false
 }
 
